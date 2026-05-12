@@ -1,0 +1,319 @@
+@charset "UTF-8";
+
+/* =========================================
+   基本設定
+========================================= */
+body {
+    font-family: "Meiryo", "Hiragino Kaku Gothic ProN", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e9ecf3; /* 2010年代に多い薄いグレーブルーの背景 */
+    color: #333;
+    line-height: 1.6;
+}
+
+a {
+    color: #0056b3;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+/* 2010年代特有の固定幅 (980px)・中央配置 */
+header, main, footer {
+    width: 980px;
+    margin: 0 auto;
+    background-color: #fff;
+}
+
+/* =========================================
+   ヘッダー
+========================================= */
+header {
+    border-top: 5px solid #004d99; /* KALのコーポレートカラー */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 15px 20px;
+}
+
+.logo h1 {
+    margin: 0;
+    font-size: 32px;
+    color: #004d99;
+    letter-spacing: 2px;
+}
+
+.logo p {
+    margin: 0;
+    font-size: 12px;
+    color: #666;
+    font-weight: bold;
+}
+
+.header-utility ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+}
+
+/* =========================================
+   グローバルナビゲーション (グラデーションとシャドウ)
+========================================= */
+.main-nav {
+    background: linear-gradient(to bottom, #0066cc 0%, #004d99 100%);
+    border-bottom: 3px solid #ff9900; /* アクセントのオレンジ */
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.main-nav li {
+    flex: 1;
+    border-right: 1px solid #003366;
+}
+.main-nav li:last-child {
+    border-right: none;
+}
+
+.main-nav a {
+    display: block;
+    text-align: center;
+    padding: 14px 0;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    text-decoration: none;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.6); /* テキストにドロップシャドウ */
+}
+
+.main-nav a:hover, .main-nav a.active {
+    background: linear-gradient(to bottom, #0073e6 0%, #005ce6 100%);
+    text-decoration: none;
+}
+
+/* =========================================
+   メインビジュアル
+========================================= */
+.hero {
+    height: 320px;
+    background: url('/33902982_s.jpg') no-repeat center center / cover;
+    display: flex;
+    align-items: center;
+    padding-left: 40px;
+    border-bottom: 1px solid #ccc;
+}
+
+.hero-content {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 25px 30px;
+    border-radius: 5px;
+    border: 1px solid #fff;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+
+.hero-content h2 {
+    margin: 0 0 10px;
+    color: #004d99;
+    font-size: 28px;
+    text-shadow: 1px 1px 0 #fff;
+}
+
+.hero-content p {
+    margin: 0;
+    color: #333;
+    font-weight: bold;
+}
+
+/* =========================================
+   予約ボックス (立体感のあるフォームとボタン)
+========================================= */
+.booking-box {
+    background: linear-gradient(to bottom, #fdfdfd 0%, #eeeeee 100%);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: inset 0 1px 0 #fff, 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.booking-box h3 {
+    margin-top: 0;
+    border-bottom: 2px solid #004d99;
+    padding-bottom: 8px;
+    color: #004d99;
+    font-size: 18px;
+}
+
+.booking-box form {
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-group select, .form-group input {
+    padding: 8px;
+    border: 1px solid #aaa;
+    border-radius: 3px;
+    font-size: 14px;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1); /* 内側のシャドウで凹み感を演出 */
+}
+
+/* 航空会社によくある「検索」の目立つオレンジボタン */
+.btn-search {
+    background: linear-gradient(to bottom, #ffb347 0%, #ff9900 100%);
+    border: 1px solid #cc7a00;
+    color: #fff;
+    padding: 10px 30px;
+    font-weight: bold;
+    font-size: 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.4);
+}
+
+.btn-search:hover {
+    background: linear-gradient(to bottom, #ffcc80 0%, #ffa31a 100%);
+}
+
+/* =========================================
+   コンテンツエリア (2カラム)
+========================================= */
+.content-wrapper {
+    display: flex;
+    padding: 0 20px 30px;
+    gap: 30px;
+}
+
+/* お知らせ */
+.news {
+    flex: 2;
+}
+
+.news h3 {
+    border-left: 5px solid #004d99;
+    padding-left: 10px;
+    font-size: 18px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+.news ul {
+    list-style: none;
+    padding: 0;
+}
+
+.news li {
+    padding: 12px 0;
+    border-bottom: 1px dotted #ccc;
+    font-size: 13px;
+}
+
+.news .date {
+    color: #888;
+    margin-right: 15px;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+/* サイドバナー */
+.banners {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.banner {
+    display: block;
+    border: 1px solid #ccc;
+    padding: 15px;
+    border-radius: 5px;
+    background: linear-gradient(to bottom, #ffffff 0%, #f4f4f4 100%);
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    transition: background 0.2s;
+}
+
+.banner:hover {
+    background: #fff;
+    border-color: #004d99;
+    text-decoration: none;
+}
+
+.banner h4 {
+    margin: 0 0 5px;
+    color: #004d99;
+    font-size: 15px;
+}
+
+.banner p {
+    margin: 0;
+    font-size: 12px;
+    color: #666;
+}
+
+/* =========================================
+   フッター
+========================================= */
+footer {
+    background-color: #333;
+    color: #ccc;
+    font-size: 12px;
+    border-top: 5px solid #004d99;
+}
+
+.footer-nav {
+    padding: 20px;
+    border-bottom: 1px solid #444;
+}
+
+.footer-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer-nav a {
+    color: #ccc;
+}
+.footer-nav a:hover {
+    color: #fff;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 15px;
+    background-color: #222;
+}
