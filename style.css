@@ -391,3 +391,105 @@ footer {
     font-size: 10px;
     color: rgba(255,255,255,0.5);
 }
+
+/* =========================================
+    機材紹介セクション（新規追加）
+========================================= */
+.aircraft-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.aircraft-item {
+    display: flex;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+
+/* ホバー時に少し浮き上がり、メインカラーの枠線にする演出 */
+.aircraft-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+    border-color: #004d99;
+}
+
+/* 画像エリア */
+.aircraft-img {
+    flex: 2;
+    background-color: #e9ecf3;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-right: 1px solid #eee;
+}
+
+/* 画像が読み込めない・無い場合のダミーテキスト */
+.aircraft-img::before {
+    content: "[ 航空機イメージ ]";
+    font-size: 12px;
+    color: #888;
+    font-weight: bold;
+}
+
+/* テキスト・スペック情報エリア */
+.aircraft-info {
+    flex: 3;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.aircraft-info h4 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: #004d99;
+    border-bottom: 2px solid #ff9900; /* ナビゲーションと合わせたアクセントのオレンジ */
+    padding-bottom: 4px;
+    display: inline-block;
+}
+
+.aircraft-desc {
+    margin: 0 0 15px 0;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.5;
+}
+
+/* 簡易スペック表 */
+.aircraft-spec {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-top: auto;
+}
+
+.aircraft-spec th, 
+.aircraft-spec td {
+    padding: 6px 10px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+}
+
+.aircraft-spec th {
+    background-color: #f7f9fa;
+    color: #555;
+    text-align: left;
+    width: 30%;
+    font-weight: bold;
+}
+
+.aircraft-spec td {
+    color: #333;
+}
