@@ -1297,3 +1297,94 @@ footer {
     background-position: center;
     background-repeat: no-repeat;
 }
+
+/* =========================================
+   プレスリリース（ニュース一覧）用 追加CSS
+========================================= */
+
+/* リリース全体のコンテナ */
+.press-list-container {
+    display: flex;
+    flex-direction: column;
+    border-top: 1px solid #ddd;
+    margin-top: 15px;
+}
+
+/* 1件分のニュース枠 */
+.press-item {
+    display: flex;
+    padding: 20px 10px;
+    border-bottom: 1px dashed #ddd;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+/* 日付とバッジのエリア */
+.press-meta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    min-width: 140px;
+}
+
+/* ニュースの日付 */
+.press-date {
+    font-size: 13px;
+    color: #666;
+    font-family: monospace;
+}
+
+/* カテゴリーバッジの共通設定 */
+.press-badge {
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 3px;
+    color: #fff;
+    text-align: center;
+}
+.badge-route { background-color: #0056b3; }    /* 運航：青 */
+.badge-campaign { background-color: #e68a00; } /* イベント：オレンジ */
+.badge-corp { background-color: #555555; }     /* 企業：グレー */
+
+/* 記事タイトルと概要 */
+.press-content {
+    flex: 1;
+}
+.press-content h4 {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+}
+.press-content h4 a {
+    color: #004d99;
+    text-decoration: none;
+}
+.press-content h4 a:hover {
+    text-decoration: underline;
+    color: #ff9900;
+}
+.press-content p {
+    margin: 0;
+    font-size: 13px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* スマホ表示時のレスポンシブ（縦並びに切り替え） */
+@media (max-width: 650px) {
+    .press-item {
+        flex-direction: column;
+        gap: 10px;
+        padding: 15px 5px;
+    }
+    .press-meta {
+        flex-direction: row;
+        align-items: center;
+        min-width: auto;
+        gap: 15px;
+    }
+    .press-content h4 {
+        font-size: 14px;
+    }
+}
