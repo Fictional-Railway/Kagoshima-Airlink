@@ -1258,3 +1258,42 @@ footer {
 .campaign-notice-list li:last-child {
     margin-bottom: 0;
 }
+
+/* =========================================
+   採用情報ページ用 追加CSS
+========================================= */
+
+/* 採用向け絵文字アイコンの割り当て */
+.career-icon-pilot::before { content: "👨‍✈️"; font-size: 36px; display: block; text-align: center; line-height: 100px; }
+.career-icon-ca::before { content: "💁‍♀️"; font-size: 36px; display: block; text-align: center; line-height: 100px; }
+
+/* 募集要項テーブルのスマホ表示時の微調整 */
+@media (max-width: 600px) {
+    .campaign-fare-table td {
+        font-size: 11px;
+        padding: 6px 4px;
+    }
+    .campaign-fare-table td strong {
+        font-size: 12px;
+    }
+}
+
+/* =========================================
+   採用情報ページ用 写真差し込みCSS
+========================================= */
+
+/* パイロット写真の設定 */
+.career-img-pilot {
+    background-image: url('./image/cockpit.jpg'); /* 実際の写真パスに書き換えてください */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* 客室乗務員（CA）写真の設定 */
+.career-img-ca {
+    background-image: url('./image/galley.jpg'); /* 実際の写真パスに書き換えてください */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
