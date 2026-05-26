@@ -345,8 +345,23 @@ footer {
     border-right: 1px solid #eee;
 }
 
+/* 画像エリア(拡大Ver.) */
+.aircraft-img2 {
+    flex: 3;
+    background-color: #e9ecf3;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-right: 1px solid #eee;
+}
+
 /* 画像が読み込めない・無い場合のダミーテキスト */
-.aircraft-img::before {
+.aircraft-img::before, .aircraft-img2::before {
     font-size: 12px;
     color: #888;
     font-weight: bold;
