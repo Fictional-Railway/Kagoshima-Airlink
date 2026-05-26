@@ -23,8 +23,8 @@
     </div>
     <nav class="main-nav">
         <ul>
-            <li><a href="index.html" class="active">ホーム</a></li>
-            <li><a href="bookinginfo.html">予約・空席照会</a></li>
+            <li><a href="index.html">ホーム</a></li>
+            <li><a href="booking.html" class="active">予約・空席照会</a></li>
             <li><a href="route.html">時刻表・路線</a></li>
             <li><a href="service.html">機内サービス</a></li>
             <li><a href="fleet.html">機材紹介</a></li>
@@ -38,8 +38,6 @@
         <section class="booking-page">
             <h2 class="page-title">国内線 予約・空席照会 / Online Booking System</h2>
 
-            <p>※このシステムは架空のものです。個人情報などは一切サーバーに送信されず、情報は保存されません。</p>
-
             <ul class="step-bar">
                 <li id="step1" class="active">1. 便の選択</li>
                 <li id="step2">2. 搭乗者情報</li>
@@ -48,14 +46,55 @@
                 <li id="step5">5. 予約完了</li>
             </ul>
 
+            <div id="direct-search-panel" class="search-panel" style="display: none; margin-bottom: 30px;">
+                <h3>ご希望の条件を入力してください</h3>
+                <form action="booking.html" method="GET" class="advanced-search-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>出発地</label>
+                            <select name="dep" id="direct-dep">
+                                <option value="KOJ">鹿児島 (KOJ)</option>
+                                <option value="HIJ">広島西 (HIJ)</option>
+                                <option value="KCZ">高知 (KCZ)</option>
+                                <option value="KKJ">北九州 (KKJ)</option>
+                                <option value="FSZ">静岡 (FSZ)</option>
+                                <option value="KUM">屋久島 (KUM)</option>
+                                <option value="TAK">高松 (TAK)</option>
+                                <option value="RNJ">与論 (RNJ)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>到着地</label>
+                            <select name="arr" id="direct-arr">
+                                <option value="KOJ">鹿児島 (KOJ)</option>
+                                <option value="HIJ" selected>広島西 (HIJ)</option>
+                                <option value="KCZ">高知 (KCZ)</option>
+                                <option value="KKJ">北九州 (KKJ)</option>
+                                <option value="FSZ">静岡 (FSZ)</option>
+                                <option value="KUM">屋久島 (KUM)</option>
+                                <option value="TAK">高松 (TAK)</option>
+                                <option value="RNJ">与論 (RNJ)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>搭乗日</label>
+                            <input type="date" name="date" id="direct-date">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn-search-large" style="font-size: 15px; padding: 10px 40px;">この条件で空席を照会する</button>
+                    </div>
+                </form>
+            </div>
+
             <div id="panel-step1" class="booking-panel">
                 <div class="search-summary-box" id="search-summary-text">
-                    <strong>現在の検索条件：</strong> 読み込み中...
+                    <strong>現在の検索条件：</strong> 条件を指定してください。
                 </div>
                 
-                <p class="fares-note">※ご希望の便の運賃を選択し、「次へ進む」を押してください。</p>
+                <p class="fares-note" id="booking-instruction-note">※ご希望の便の運賃を選択し、「次へ進む」を押してください。</p>
 
-                <table class="booking-matrix-table">
+                <table class="booking-matrix-table" id="booking-matrix-table-el">
                     <thead>
                         <tr>
                             <th>便名 / 機材</th>
@@ -102,13 +141,13 @@
                 <div class="seat-preference-box">
                     <label class="seat-option-card">
                         <input type="radio" name="seat_pref" value="窓側" checked>
-                        <div class="seat-title">窓側 (Window Seat)</div>
+                        <div class="seat-title">🪟 窓側 (Window Seat)</div>
                         <div class="seat-desc">鹿児島の美しい桜島や海岸線、雲海の景色をお楽しみいただけます。</div>
                     </label>
                     
                     <label class="seat-option-card">
                         <input type="radio" name="seat_pref" value="通路側">
-                        <div class="seat-title">通路側 (Aisle Seat)</div>
+                        <div class="seat-title">🚶‍♂️ 通路側 (Aisle Seat)</div>
                         <div class="seat-desc">化粧室への移動や、降機時にスムーズに行動されたい方におすすめです。</div>
                     </label>
                 </div>
@@ -120,7 +159,7 @@
             </div>
 
             <div id="panel-step4" class="booking-panel" style="display:none;">
-                <h3>決済手続き</h3>
+                <h3>決済手続き（テスト用ダミー画面）</h3>
                 
                 <div class="payment-summary">
                     <h4>■ 選択された内容の最終確認</h4>
@@ -160,6 +199,7 @@
 
             <div id="panel-step5" class="booking-panel" style="display:none;">
                 <div class="success-box">
+                    <span class="success-icon">🎉</span>
                     <h3>航空券の購入・予約が完了しました！</h3>
                     <p>鹿児島エアリンクをご利用いただきありがとうございます。<br>ご登録のメールアドレスへ、電子航空券（Eチケット）をお送りいたしました。</p>
                 </div>
@@ -182,86 +222,102 @@
 </main>
 
 <script>
-    // 空港コードと名称のマッピング
     const airportNames = {
         'KOJ': '鹿児島', 'HIJ': '広島西', 'KCZ': '高知', 'KKJ': '北九州',
         'FSZ': '静岡', 'KUM': '屋久島', 'TAK': '高松', 'RNJ': '与論'
     };
 
-    // いただいた画像から完全に再現した公式フライトマスターデータベース
     const flightDatabase = [
-        // 広島西線
         { num: 'KG101', dep: 'KOJ', arr: 'HIJ', depTime: '07:25', arrTime: '08:10', model: 'B737-400' },
         { num: 'KG102', dep: 'HIJ', arr: 'KOJ', depTime: '09:30', arrTime: '10:15', model: 'B737-400' },
         { num: 'KG103', dep: 'KOJ', arr: 'HIJ', depTime: '10:30', arrTime: '11:15', model: 'DHC 8-300' },
         { num: 'KG104', dep: 'HIJ', arr: 'KOJ', depTime: '12:00', arrTime: '12:45', model: 'DHC 8-300' },
         { num: 'KG105', dep: 'KOJ', arr: 'HIJ', depTime: '15:00', arrTime: '15:45', model: 'B737-400' },
         { num: 'KG106', dep: 'HIJ', arr: 'KOJ', depTime: '17:50', arrTime: '18:35', model: 'B737-400' },
-        // 高知線
         { num: 'KG111', dep: 'KOJ', arr: 'KCZ', depTime: '07:50', arrTime: '08:50', model: 'YS-11' },
         { num: 'KG112', dep: 'KCZ', arr: 'KOJ', depTime: '12:00', arrTime: '13:00', model: 'YS-11' },
         { num: 'KG113', dep: 'KOJ', arr: 'KCZ', depTime: '15:30', arrTime: '16:30', model: 'YS-11' },
         { num: 'KG114', dep: 'KCZ', arr: 'KOJ', depTime: '18:20', arrTime: '19:20', model: 'YS-11' },
-        // 北九州線
         { num: 'KG121', dep: 'KOJ', arr: 'KKJ', depTime: '06:30', arrTime: '07:30', model: 'DHC 8-300' },
         { num: 'KG122', dep: 'KKJ', arr: 'KOJ', depTime: '08:00', arrTime: '09:00', model: 'DHC 8-300' },
         { num: 'KG123', dep: 'KOJ', arr: 'KKJ', depTime: '14:15', arrTime: '15:15', model: 'DHC 8-300' },
         { num: 'KG124', dep: 'KKJ', arr: 'KOJ', depTime: '16:30', arrTime: '17:40', model: 'DHC 8-300' },
-        // 静岡線
         { num: 'KG131', dep: 'KOJ', arr: 'FSZ', depTime: '07:40', arrTime: '09:10', model: 'B737-400' },
         { num: 'KG132', dep: 'FSZ', arr: 'KOJ', depTime: '10:00', arrTime: '11:30', model: 'B737-400' },
         { num: 'KG133', dep: 'KOJ', arr: 'FSZ', depTime: '09:30', arrTime: '11:00', model: 'DHC 8-300' },
         { num: 'KG134', dep: 'FSZ', arr: 'KOJ', depTime: '11:40', arrTime: '13:10', model: 'DHC 8-300' },
         { num: 'KG135', dep: 'KOJ', arr: 'FSZ', depTime: '13:20', arrTime: '14:50', model: 'B737-400' },
         { num: 'KG136', dep: 'FSZ', arr: 'KOJ', depTime: '16:00', arrTime: '17:30', model: 'B737-400' },
-        // 屋久島線
         { num: 'KG141', dep: 'KOJ', arr: 'KUM', depTime: '08:00', arrTime: '08:40', model: 'B737-400' },
         { num: 'KG142', dep: 'KUM', arr: 'KOJ', depTime: '11:00', arrTime: '11:40', model: 'B737-400' },
         { num: 'KG143', dep: 'KOJ', arr: 'KUM', depTime: '14:00', arrTime: '15:00', model: 'DHC 8-300' },
         { num: 'KG144', dep: 'KUM', arr: 'KOJ', depTime: '16:30', arrTime: '17:30', model: 'DHC 8-300' },
-        // 高松線
         { num: 'KG151', dep: 'KOJ', arr: 'TAK', depTime: '07:00', arrTime: '08:30', model: 'YS-11' },
         { num: 'KG152', dep: 'TAK', arr: 'KOJ', depTime: '10:00', arrTime: '11:30', model: 'YS-11' },
         { num: 'KG153', dep: 'KOJ', arr: 'TAK', depTime: '13:30', arrTime: '15:00', model: 'YS-11' },
         { num: 'KG154', dep: 'TAK', arr: 'KOJ', depTime: '17:00', arrTime: '18:30', model: 'YS-11' },
-        // 与論線 (※便名は画像通り重複していますが内部で区別)
         { num: 'KG151_Y', dep: 'KOJ', arr: 'RNJ', depTime: '07:30', arrTime: '08:30', model: 'YS-11', labelNum: 'KG151' },
         { num: 'KG152_Y', dep: 'RNJ', arr: 'KOJ', depTime: '10:30', arrTime: '11:30', model: 'YS-11', labelNum: 'KG152' },
         { num: 'KG153_Y', dep: 'KOJ', arr: 'RNJ', depTime: '14:00', arrTime: '15:00', model: 'YS-11', labelNum: 'KG153' },
         { num: 'KG154_Y', dep: 'RNJ', arr: 'KOJ', depTime: '16:30', arrTime: '17:30', model: 'YS-11', labelNum: 'KG154' }
     ];
 
-    // グローバルデータ保持用
     let reservationData = {
-        depCode: 'KOJ', arrCode: 'HIJ', dateStr: '2026-06-01',
+        depCode: '', arrCode: '', dateStr: '',
         flightNum: '', flightTime: '', price: 0, fareType: '',
         name: '', phone: '', email: '', seatPref: ''
     };
 
-    // 初期化関数
-    function initBookingPage() {
-        const urlParams = new URLSearchParams(window.location.search);
-        reservationData.depCode = urlParams.get('dep') || 'KOJ';
-        reservationData.arrCode = urlParams.get('arr') || 'HIJ';
-        reservationData.dateStr = urlParams.get('date') || '2026-06-01';
-
-        const depName = airportNames[reservationData.depCode] || reservationData.depCode;
-        const arrName = airportNames[reservationData.arrCode] || reservationData.arrCode;
-
-        // 上部テキスト変更
-        document.getElementById('search-summary-text').innerHTML = 
-            `<strong>現在の検索条件：</strong> ${reservationData.dateStr} | ${depName}(${reservationData.depCode}) ➡ ${arrName}(${reservationData.arrCode}) | 大人1名`;
-
-        // マトリクステーブルの動的生成
-        renderFlightMatrix();
+    function getTodayString() {
+        const today = new Date();
+        const year = today.getFullYear();
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const day = String(today.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
     }
 
-    // 条件に合致するフライトをテーブルにレンダリングする
+    // ★★★ 今回の肝：アクセス元（パラメータ）の有無を判定する仕組み ★★★
+    function initBookingPage() {
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // 日付入力欄の初期値を今日にする
+        document.getElementById('direct-date').value = getTodayString();
+
+        // パラメータに「dep（出発地）」があるかチェック
+        if (urlParams.has('dep')) {
+            // 【パターンA：トップページから検索されてきた場合】
+            // パネルを隠したまま、そのままフライトを検索・表示する
+            document.getElementById('direct-search-panel').style.display = 'none';
+            document.getElementById('booking-matrix-table-el').style.display = 'table';
+            document.getElementById('booking-instruction-note').style.display = 'block';
+
+            reservationData.depCode = urlParams.get('dep');
+            reservationData.arrCode = urlParams.get('arr');
+            reservationData.dateStr = urlParams.get('date');
+
+            const depName = airportNames[reservationData.depCode] || reservationData.depCode;
+            const arrName = airportNames[reservationData.arrCode] || reservationData.arrCode;
+
+            document.getElementById('search-summary-text').innerHTML = 
+                `<strong>現在の検索条件：</strong> ${reservationData.dateStr} | ${depName}(${reservationData.depCode}) ➡ ${arrName}(${reservationData.arrCode}) | 大人1名`;
+
+            renderFlightMatrix();
+        } else {
+            // 【パターンB：ヘッダーの「予約・空席照会」から直接きた場合】
+            // 条件入力フォームを表示し、時刻表テーブルや案内テキストは一旦非表示にする
+            document.getElementById('direct-search-panel').style.display = 'block';
+            document.getElementById('booking-matrix-table-el').style.display = 'none';
+            document.getElementById('booking-instruction-note').style.display = 'none';
+            
+            document.getElementById('search-summary-text').innerHTML = 
+                `<strong>現在の検索条件：</strong> 上記パネルより条件を設定し、検索を行ってください。`;
+        }
+    }
+
     function renderFlightMatrix() {
         const container = document.getElementById('flight-matrix-body');
-        container.innerHTML = ''; // クリア
+        container.innerHTML = '';
 
-        // データベースからマッチするフライトを抽出
         const matches = flightDatabase.filter(f => f.dep === reservationData.depCode && f.arr === reservationData.arrCode);
 
         if (matches.length === 0) {
@@ -269,23 +325,13 @@
             return;
         }
 
-        // 運賃設定（機材ごとにちょっと変えてリアルさを演出）
         matches.forEach((flight, index) => {
             let normalPrice = 18500;
             let specialPrice = 12500;
+            if (flight.model.includes('YS-11')) { normalPrice = 14800; specialPrice = 9800; }
+            else if (flight.model.includes('DHC')) { normalPrice = 16000; specialPrice = 10500; }
 
-            if (flight.model.includes('YS-11')) {
-                normalPrice = 14800; // プロペラ機はちょっと安め
-                specialPrice = 9800;
-            } else if (flight.model.includes('DHC')) {
-                normalPrice = 16000;
-                specialPrice = 10500;
-            }
-
-            // 便名表示の調整（与論用の内部ID対策）
             const displayName = flight.labelNum || flight.num;
-
-            // 残席マークのシミュレーション（便ごとに少し散らす）
             const symbols = [
                 { normal: '○', special: '△', specDisabled: false },
                 { normal: '○', special: '×', specDisabled: true },
@@ -322,7 +368,6 @@
 
     document.addEventListener('DOMContentLoaded', initBookingPage);
 
-    // 便選択イベント
     function selectFlight(flightNum, price, fareType, flightTime) {
         reservationData.flightNum = flightNum;
         reservationData.flightTime = flightTime;
