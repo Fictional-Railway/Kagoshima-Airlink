@@ -1590,3 +1590,27 @@ footer {
         padding: 20px 15px;
     }
 }
+/* =========================================
+   プライバシーポリシー（privacy.html）用 追加CSS
+========================================= */
+
+/* 規約文章のブロック内の余白と行間を綺麗に調整 */
+.service-block .magazine-container {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    box-shadow: none;
+    padding: 20px;
+}
+
+.service-block .magazine-info p {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #333333;
+    margin: 0;
+}
+
+/* 箇条書き部分の文字サイズ調整 */
+.service-block .campaign-notice-list li {
+    font-size: 13px;
+    color: #444444;
+}
