@@ -488,3 +488,247 @@ footer {
 .company-table tr:first-child td {
     border-top: 1px solid #ccc;
 }
+
+/* =========================================
+   機内サービスセクション（新規追加）
+========================================= */
+.service-intro {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 30px;
+    line-height: 1.8;
+}
+
+.service-block {
+    margin-bottom: 40px;
+}
+
+.service-block h3 {
+    border-left: 5px solid #004d99;
+    padding-left: 10px;
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+/* お食事グリッド（横並び） */
+.service-grid {
+    display: flex;
+    gap: 25px;
+}
+
+.service-item {
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* 画像ダミーエリア */
+.service-img-dummy {
+    height: 160px;
+    background-color: #e9ecf3;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+}
+
+.service-img-dummy::before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 12px;
+    color: #888;
+    font-weight: bold;
+}
+
+/* 画像を設定する場合は、ここに画像パスを記述してください */
+.chiran-cha {
+    background-image: url('./image/chirancha.jpg');
+}
+.katsusando {
+    background-image: url('./image/katsu.jpg');
+}
+
+.service-detail {
+    padding: 15px;
+}
+
+.service-detail h4 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    color: #004d99;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.service-detail p {
+    margin: 0;
+    font-size: 13px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* 機内誌セクション（会社概要の理念ボックスとトーンを統一） */
+.magazine-container {
+    background: linear-gradient(to bottom, #f7f9fa 0%, #eeeeee 100%);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 25px;
+    box-shadow: inset 0 1px 0 #fff;
+}
+
+.magazine-info h4 {
+    margin: 0 0 12px 0;
+    font-size: 16px;
+    color: #004d99;
+}
+
+.magazine-info p {
+    margin: 0;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.8;
+}
+
+/* =========================================
+   時刻表・路線セクション（新規追加）
+========================================= */
+.route-block {
+    margin-bottom: 40px;
+}
+
+.route-block h3 {
+    border-left: 5px solid #004d99;
+    padding-left: 10px;
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+}
+
+/* 就航路線リストのレイアウト */
+.route-lists {
+    display: flex;
+    gap: 30px;
+}
+
+.route-group {
+    flex: 1;
+    background-color: #f7f9fa;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 15px 20px;
+    box-shadow: inset 0 1px 0 #fff;
+}
+
+.route-group h4 {
+    margin: 0 0 10px 0;
+    color: #004d99;
+    font-size: 14px;
+    border-bottom: 1px dotted #ccc;
+    padding-bottom: 5px;
+}
+
+.route-group ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.route-group li {
+    font-size: 13px;
+    padding: 6px 0;
+    color: #333;
+    position: relative;
+    padding-left: 15px;
+}
+
+/* 行頭に「✈」マークを付ける2010年代風の演出 */
+.route-group li::before {
+    content: "✈";
+    position: absolute;
+    left: 0;
+    color: #ff9900;
+    font-size: 11px;
+}
+
+/* 時刻表テーブル */
+.schedule-note {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.timetable-section {
+    margin-bottom: 30px;
+}
+
+.timetable-section h4 {
+    font-size: 15px;
+    color: #004d99;
+    margin: 0 0 10px 0;
+}
+
+.schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.schedule-table th,
+.schedule-table td {
+    padding: 10px 12px;
+    font-size: 13px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.schedule-table th {
+    background: linear-gradient(to bottom, #0066cc 0%, #004d99 100%);
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
+}
+
+/* 出発便と到着便で背景色をうっすら分ける（視認性向上） */
+.route-outbound {
+    background-color: #fff;
+}
+
+.route-inbound {
+    background-color: #f9fbfd; /* わずかにブルーがかった白 */
+}
+
+/* ホバー時に行をハイライト */
+.schedule-table tbody tr:hover {
+    background-color: #fff9e6;
+}
+
+.flight-num {
+    font-weight: bold;
+    color: #004d99;
+    font-family: Arial, sans-serif;
+}
+
+.flight-time {
+    font-weight: bold;
+    color: #333;
+}
+
+/* 増便など、目立たせたいテキスト用 */
+.highlight-text {
+    color: #cc0000;
+    font-weight: bold;
+    background-color: #ffe6e6;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 11px;
+}
