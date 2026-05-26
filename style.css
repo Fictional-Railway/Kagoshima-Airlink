@@ -1507,3 +1507,86 @@ footer {
     font-weight: bold;
     font-size: 15px;
 }
+
+/* =========================================
+   お問い合わせページ（contact.html）用 追加CSS
+========================================= */
+
+/* フォーム全体の配置 */
+.contact-form {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 30px;
+    margin-top: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+
+/* 各入力行のスタイル */
+.form-row {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* ラベル表現 */
+.form-row label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 必須マークのバッジ */
+.req-label {
+    background-color: #cc0000;
+    color: #fff;
+    font-size: 11px;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-weight: normal;
+}
+
+/* 入力ボックス・セレクトボックス・テキストエリアの共通設定 */
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form select,
+.contact-form textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* フォーカス時のエフェクト（KALブランドカラーの青に） */
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: #0056b3;
+    box-shadow: 0 0 5px rgba(0, 86, 179, 0.25);
+}
+
+/* テキストエリアのサイズ固定リサイズ対応 */
+.contact-form textarea {
+    resize: vertical;
+}
+
+/* 送信ボタンの配置エリア */
+.form-submit {
+    text-align: center;
+    margin-top: 30px;
+}
+
+/* モバイル表示（最大幅600px）でのパディング微調整 */
+@media (max-width: 600px) {
+    .contact-form {
+        padding: 20px 15px;
+    }
+}

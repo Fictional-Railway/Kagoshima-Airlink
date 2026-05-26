@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鹿児島エアリンク | Kagoshima Air Link (KAL) - 薩摩の空を、もっと身近に。</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="header-top">
+        <div class="logo">
+            <h1>鹿児島エアリンク</h1>
+            <p>Kagoshima Air Link</p>
+        </div>
+        <div class="header-utility">
+            <ul>
+                <li><a href="#">よくあるご質問</a></li>
+                <li><a href="#">お問い合わせ</a></li>
+            </ul>
+        </div>
+    </div>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html">ホーム</a></li>
+            <li><a href="booking.html">予約・空席照会</a></li>
+            <li><a href="route.html">時刻表・路線</a></li>
+            <li><a href="service.html">機内サービス</a></li>
+            <li><a href="fleet.html" class="active">機材紹介</a></li>
+            <li><a href="company.html">企業情報</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div class="content-wrapper" style="flex-direction: column; padding: 20px 30px 40px;">
+        <section class="service-page">
+            <h2 class="page-title">お問い合わせ / Contact</h2>
+            
+            <p class="service-intro">鹿児島エアリンクをご利用いただきありがとうございます。運航状況のご確認、航空券の予約変更・払い戻し、その他ご意見やご要望は、お電話または以下のメールフォームよりお問い合わせください。</p>
+            
+            <div class="service-block">
+                <h3>メールフォームでのお問い合わせ</h3>
+                <p class="campaign-table-note">以下のフォームに必要事項をご記入の上、「送信する」ボタンを押してください。通常2～3営業日以内に担当者よりご返信いたします。<br><b>こちらのフォームは実際に送信されます。くれぐれも個人情報の入力にはご注意ください。</b></p>
+                
+                <form action="https://formspree.io/f/mqejgkew" method="POST" class="contact-form">
+    
+    <div class="form-row">
+        <label for="contact-name">お名前(ニックネーム可) <span class="req-label">必須</span></label>
+        <input type="text" id="contact-name" name="name" placeholder="薩摩 太郎" required>
+    </div>
+
+    <div class="form-row">
+        <label for="contact-email">メールアドレス <span class="req-label">必須</span></label>
+        <input type="email" id="contact-email" name="email" placeholder="example@kal-air.co.jp" required>
+    </div>
+
+    <div class="form-row">
+        <label for="contact-type">お問い合わせ種類 <span class="req-label">必須</span></label>
+        <select id="contact-type" name="type" required>
+            <option value="">-- 選択してください --</option>
+            <option value="reserve">ご予約・お支払いについて</option>
+            <option value="service">機内サービス・お荷物について</option>
+            <option value="corp">ご意見・ご要望</option>
+            <option value="other">その他のお問い合わせ</option>
+        </select>
+    </div>
+
+    <div class="form-row">
+        <label for="contact-message">お問い合わせ内容 <span class="req-label">必須</span></label>
+        <textarea id="contact-message" name="message" rows="6" placeholder="具体的なお問い合わせ内容をご記入ください。" required></textarea>
+    </div>
+
+    <div class="form-submit">
+        <button type="submit" class="btn-campaign-book" style="padding: 12px 40px; font-size: 14px;">送信する</button>
+    </div>
+
+</form>
+            </div>
+        </section>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-nav">
+        <ul>
+            <li><a href="company.html">企業情報</a></li>
+            <li><a href="careers.html">採用情報</a></li>
+            <li><a href="press.html">プレスリリース</a></li>
+            <li><a href="safety.html">安全報告書</a></li>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+            <li><a href="terms.html">運送約款</a></li>
+        </ul>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Kagoshima Air Link All Rights Reserved.</p>
+        <p>注意：このサイトの内容はすべて架空のものです。また、実際の地名・会社名、人物名等がサイト内に含まれますが、それらとは一切関係ありません。</p>
+    </div>
+</footer>
+
+</body>
+</html>
