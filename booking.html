@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鹿児島エアリンク | Kagoshima Air Link (KAL) - 薩摩の空を、もっと身近に。</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="header-top">
+        <div class="logo">
+            <h1>鹿児島エアリンク</h1>
+            <p>Kagoshima Air Link</p>
+        </div>
+        <div class="header-utility">
+            <ul>
+                <li><a href="#">よくあるご質問</a></li>
+                <li><a href="#">お問い合わせ</a></li>
+            </ul>
+        </div>
+    </div>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html" class="active">ホーム</a></li>
+            <li><a href="bookinginfo.html">予約・空席照会</a></li>
+            <li><a href="route.html">時刻表・路線</a></li>
+            <li><a href="service.html">機内サービス</a></li>
+            <li><a href="fleet.html">機材紹介</a></li>
+            <li><a href="company.html">企業情報</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div class="content-wrapper" style="flex-direction: column; padding: 20px 30px 40px;">
+        <section class="booking-page">
+            <h2 class="page-title">国内線 予約・空席照会 / Online Booking System</h2>
+
+            <ul class="step-bar">
+                <li id="step1" class="active">1. 便の選択</li>
+                <li id="step2">2. 搭乗者情報</li>
+                <li id="step3">3. 座席指定</li>
+                <li id="step4">4. お支払い</li>
+                <li id="step5">5. 予約完了</li>
+            </ul>
+
+            <div id="panel-step1" class="booking-panel">
+                <div class="search-summary-box" id="search-summary-text">
+                    <strong>現在の検索条件：</strong> 読み込み中...
+                </div>
+                
+                <p class="fares-note">※ご希望の便の運賃を選択し、「次へ進む」を押してください。</p>
+
+                <table class="booking-matrix-table">
+                    <thead>
+                        <tr>
+                            <th>便名 / 機材</th>
+                            <th>出発 ➡ 到着</th>
+                            <th>片道・普通運賃</th>
+                            <th>特割7 (お得値!)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="flight-matrix-body">
+                        </tbody>
+                </table>
+
+                <div class="btn-container">
+                    <button class="btn-next" id="btn-to-step2" disabled onclick="goToStep(2)">搭乗者情報の入力へ ➡</button>
+                </div>
+            </div>
+
+            <div id="panel-step2" class="booking-panel" style="display:none;">
+                <h3>搭乗者情報入力</h3>
+                <div class="booking-form">
+                    <div class="input-row">
+                        <label>お名前（フリガナ）<span class="required">必須</span></label>
+                        <input type="text" id="passenger-name" placeholder="ヤマダ タロウ" oninput="validateStep2()">
+                    </div>
+                    <div class="input-row">
+                        <label>電話番号（日中連絡先）<span class="required">必須</span></label>
+                        <input type="tel" id="passenger-phone" placeholder="090-0000-0000" oninput="validateStep2()">
+                    </div>
+                    <div class="input-row">
+                        <label>メールアドレス<span class="required">必須</span></label>
+                        <input type="email" id="passenger-email" placeholder="example@satsuma.co.jp" oninput="validateStep2()">
+                    </div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn-back" onclick="goToStep(1)">⬅ 便選択に戻る</button>
+                    <button class="btn-next" id="btn-to-step3" disabled onclick="goToStep(3)">座席指定へ進む ➡</button>
+                </div>
+            </div>
+
+            <div id="panel-step3" class="booking-panel" style="display:none;">
+                <h3>ご希望の座席属性の選択</h3>
+                <p class="section-desc">機内レイアウトに基づき、大まかな座席位置をご指定いただけます。（※詳細な座席番号はチェックイン時に決定します）</p>
+                
+                <div class="seat-preference-box">
+                    <label class="seat-option-card">
+                        <input type="radio" name="seat_pref" value="窓側" checked>
+                        <div class="seat-title">🪟 窓側 (Window Seat)</div>
+                        <div class="seat-desc">鹿児島の美しい桜島や海岸線、雲海の景色をお楽しみいただけます。</div>
+                    </label>
+                    
+                    <label class="seat-option-card">
+                        <input type="radio" name="seat_pref" value="通路側">
+                        <div class="seat-title">🚶‍♂️ 通路側 (Aisle Seat)</div>
+                        <div class="seat-desc">化粧室への移動や、降機時にスムーズに行動されたい方におすすめです。</div>
+                    </label>
+                </div>
+
+                <div class="btn-container">
+                    <button class="btn-back" onclick="goToStep(2)">⬅ お客様情報に戻る</button>
+                    <button class="btn-next" onclick="goToStep(4)">お支払い手続きへ進む ➡</button>
+                </div>
+            </div>
+
+            <div id="panel-step4" class="booking-panel" style="display:none;">
+                <h3>決済手続き（テスト用ダミー画面）</h3>
+                
+                <div class="payment-summary">
+                    <h4>■ 選択された内容の最終確認</h4>
+                    <table class="summary-table">
+                        <tr><th>区間</th><td id="summary-route">-</td></tr>
+                        <tr><th>ご搭乗便</th><td id="summary-flight">-</td></tr>
+                        <tr><th>運賃種別</th><td id="summary-fare-type">-</td></tr>
+                        <tr><th>お名前</th><td id="summary-name">-</td></tr>
+                        <tr><th>座席希望</th><td id="summary-seat">-</td></tr>
+                        <tr class="total-row"><th>お支払い合計</th><td id="summary-price">-</td></tr>
+                    </table>
+                </div>
+
+                <div class="booking-form">
+                    <h4>クレジットカード決済</h4>
+                    <div class="input-row">
+                        <label>カード番号</label>
+                        <input type="text" id="card-num" placeholder="1234 - 5678 - 9012 - 3456" oninput="validateStep4()">
+                    </div>
+                    <div class="input-row-flex">
+                        <div class="input-row">
+                            <label>有効期限 (月/年)</label>
+                            <input type="text" id="card-exp" placeholder="06 / 29" style="width: 100px;" oninput="validateStep4()">
+                        </div>
+                        <div class="input-row">
+                            <label>セキュリティコード</label>
+                            <input type="password" id="card-cvv" placeholder="123" style="width: 80px;" oninput="validateStep4()">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn-container">
+                    <button class="btn-back" onclick="goToStep(3)">⬅ 座席指定に戻る</button>
+                    <button class="btn-pay" id="btn-submit-pay" disabled onclick="processPayment()">購入を確定する（クレジット決済）</button>
+                </div>
+            </div>
+
+            <div id="panel-step5" class="booking-panel" style="display:none;">
+                <div class="success-box">
+                    <span class="success-icon">🎉</span>
+                    <h3>航空券の購入・予約が完了しました！</h3>
+                    <p>鹿児島エアリンクをご利用いただきありがとうございます。<br>ご登録 of メールアドレスへ、電子航空券（Eチケット）をお送りいたしました。</p>
+                </div>
+
+                <div class="reservation-card">
+                    <div class="card-header">鹿児島エアリンク e-Ticket 控</div>
+                    <div class="card-body">
+                        <p><strong>予約番号：</strong> <span class="res-num" id="final-res-num">KAL777</span></p>
+                        <p><strong>ご搭乗者：</strong> <span id="final-name">-</span> 様</p>
+                        <p><strong>区間：</strong> <span id="final-route">-</span></p>
+                        <p><strong>ご搭乗便：</strong> <span id="final-flight">-</span></p>
+                        <p><strong>座席選択：</strong> <span id="final-seat">-</span>属性（当日カウンターにて番号をご案内します）</p>
+                    </div>
+                </div>
+                <p style="text-align:center; font-size:12px; color:#666;">※当日は出発の20分前までに空港チェックインカウンターへお越しください。</p>
+            </div>
+
+        </section>
+    </div>
+</main>
+
+<script>
+    // 空港コードと名称のマッピング
+    const airportNames = {
+        'KOJ': '鹿児島', 'HIJ': '広島西', 'KCZ': '高知', 'KKJ': '北九州',
+        'FSZ': '静岡', 'KUM': '屋久島', 'TAK': '高松', 'RNJ': '与論'
+    };
+
+    // いただいた画像から完全に再現した公式フライトマスターデータベース
+    const flightDatabase = [
+        // 広島西線
+        { num: 'KG101', dep: 'KOJ', arr: 'HIJ', depTime: '07:25', arrTime: '08:10', model: 'B737-400' },
+        { num: 'KG102', dep: 'HIJ', arr: 'KOJ', depTime: '09:30', arrTime: '10:15', model: 'B737-400' },
+        { num: 'KG103', dep: 'KOJ', arr: 'HIJ', depTime: '10:30', arrTime: '11:15', model: 'DHC 8-300' },
+        { num: 'KG104', dep: 'HIJ', arr: 'KOJ', depTime: '12:00', arrTime: '12:45', model: 'DHC 8-300' },
+        { num: 'KG105', dep: 'KOJ', arr: 'HIJ', depTime: '15:00', arrTime: '15:45', model: 'B737-400' },
+        { num: 'KG106', dep: 'HIJ', arr: 'KOJ', depTime: '17:50', arrTime: '18:35', model: 'B737-400' },
+        // 高知線
+        { num: 'KG111', dep: 'KOJ', arr: 'KCZ', depTime: '07:50', arrTime: '08:50', model: 'YS-11' },
+        { num: 'KG112', dep: 'KCZ', arr: 'KOJ', depTime: '12:00', arrTime: '13:00', model: 'YS-11' },
+        { num: 'KG113', dep: 'KOJ', arr: 'KCZ', depTime: '15:30', arrTime: '16:30', model: 'YS-11' },
+        { num: 'KG114', dep: 'KCZ', arr: 'KOJ', depTime: '18:20', arrTime: '19:20', model: 'YS-11' },
+        // 北九州線
+        { num: 'KG121', dep: 'KOJ', arr: 'KKJ', depTime: '06:30', arrTime: '07:30', model: 'DHC 8-300' },
+        { num: 'KG122', dep: 'KKJ', arr: 'KOJ', depTime: '08:00', arrTime: '09:00', model: 'DHC 8-300' },
+        { num: 'KG123', dep: 'KOJ', arr: 'KKJ', depTime: '14:15', arrTime: '15:15', model: 'DHC 8-300' },
+        { num: 'KG124', dep: 'KKJ', arr: 'KOJ', depTime: '16:30', arrTime: '17:40', model: 'DHC 8-300' },
+        // 静岡線
+        { num: 'KG131', dep: 'KOJ', arr: 'FSZ', depTime: '07:40', arrTime: '09:10', model: 'B737-400' },
+        { num: 'KG132', dep: 'FSZ', arr: 'KOJ', depTime: '10:00', arrTime: '11:30', model: 'B737-400' },
+        { num: 'KG133', dep: 'KOJ', arr: 'FSZ', depTime: '09:30', arrTime: '11:00', model: 'DHC 8-300' },
+        { num: 'KG134', dep: 'FSZ', arr: 'KOJ', depTime: '11:40', arrTime: '13:10', model: 'DHC 8-300' },
+        { num: 'KG135', dep: 'KOJ', arr: 'FSZ', depTime: '13:20', arrTime: '14:50', model: 'B737-400' },
+        { num: 'KG136', dep: 'FSZ', arr: 'KOJ', depTime: '16:00', arrTime: '17:30', model: 'B737-400' },
+        // 屋久島線
+        { num: 'KG141', dep: 'KOJ', arr: 'KUM', depTime: '08:00', arrTime: '08:40', model: 'B737-400' },
+        { num: 'KG142', dep: 'KUM', arr: 'KOJ', depTime: '11:00', arrTime: '11:40', model: 'B737-400' },
+        { num: 'KG143', dep: 'KOJ', arr: 'KUM', depTime: '14:00', arrTime: '15:00', model: 'DHC 8-300' },
+        { num: 'KG144', dep: 'KUM', arr: 'KOJ', depTime: '16:30', arrTime: '17:30', model: 'DHC 8-300' },
+        // 高松線
+        { num: 'KG151', dep: 'KOJ', arr: 'TAK', depTime: '07:00', arrTime: '08:30', model: 'YS-11' },
+        { num: 'KG152', dep: 'TAK', arr: 'KOJ', depTime: '10:00', arrTime: '11:30', model: 'YS-11' },
+        { num: 'KG153', dep: 'KOJ', arr: 'TAK', depTime: '13:30', arrTime: '15:00', model: 'YS-11' },
+        { num: 'KG154', dep: 'TAK', arr: 'KOJ', depTime: '17:00', arrTime: '18:30', model: 'YS-11' },
+        // 与論線 (※便名は画像通り重複していますが内部で区別)
+        { num: 'KG151_Y', dep: 'KOJ', arr: 'RNJ', depTime: '07:30', arrTime: '08:30', model: 'YS-11', labelNum: 'KG151' },
+        { num: 'KG152_Y', dep: 'RNJ', arr: 'KOJ', depTime: '10:30', arrTime: '11:30', model: 'YS-11', labelNum: 'KG152' },
+        { num: 'KG153_Y', dep: 'KOJ', arr: 'RNJ', depTime: '14:00', arrTime: '15:00', model: 'YS-11', labelNum: 'KG153' },
+        { num: 'KG154_Y', dep: 'RNJ', arr: 'KOJ', depTime: '16:30', arrTime: '17:30', model: 'YS-11', labelNum: 'KG154' }
+    ];
+
+    // グローバルデータ保持用
+    let reservationData = {
+        depCode: 'KOJ', arrCode: 'HIJ', dateStr: '2026-06-01',
+        flightNum: '', flightTime: '', price: 0, fareType: '',
+        name: '', phone: '', email: '', seatPref: ''
+    };
+
+    // 初期化関数
+    function initBookingPage() {
+        const urlParams = new URLSearchParams(window.location.search);
+        reservationData.depCode = urlParams.get('dep') || 'KOJ';
+        reservationData.arrCode = urlParams.get('arr') || 'HIJ';
+        reservationData.dateStr = urlParams.get('date') || '2026-06-01';
+
+        const depName = airportNames[reservationData.depCode] || reservationData.depCode;
+        const arrName = airportNames[reservationData.arrCode] || reservationData.arrCode;
+
+        // 上部テキスト変更
+        document.getElementById('search-summary-text').innerHTML = 
+            `<strong>現在の検索条件：</strong> ${reservationData.dateStr} | ${depName}(${reservationData.depCode}) ➡ ${arrName}(${reservationData.arrCode}) | 大人1名`;
+
+        // マトリクステーブルの動的生成
+        renderFlightMatrix();
+    }
+
+    // 条件に合致するフライトをテーブルにレンダリングする
+    function renderFlightMatrix() {
+        const container = document.getElementById('flight-matrix-body');
+        container.innerHTML = ''; // クリア
+
+        // データベースからマッチするフライトを抽出
+        const matches = flightDatabase.filter(f => f.dep === reservationData.depCode && f.arr === reservationData.arrCode);
+
+        if (matches.length === 0) {
+            container.innerHTML = `<tr><td colspan="4" style="padding:40px; color:#666;">誠に申し訳ございません。指定された区間の直行便は本日運航がございません。<br><span style="font-size:12px;">(※鹿児島発着、または各都市から鹿児島への復路をお選びください)</span></td></tr>`;
+            return;
+        }
+
+        // 運賃設定（機材ごとにちょっと変えてリアルさを演出）
+        matches.forEach((flight, index) => {
+            let normalPrice = 18500;
+            let specialPrice = 12500;
+
+            if (flight.model.includes('YS-11')) {
+                normalPrice = 14800; // プロペラ機はちょっと安め
+                specialPrice = 9800;
+            } else if (flight.model.includes('DHC')) {
+                normalPrice = 16000;
+                specialPrice = 10500;
+            }
+
+            // 便名表示の調整（与論用の内部ID対策）
+            const displayName = flight.labelNum || flight.num;
+
+            // 残席マークのシミュレーション（便ごとに少し散らす）
+            const symbols = [
+                { normal: '○', special: '△', specDisabled: false },
+                { normal: '○', special: '×', specDisabled: true },
+                { normal: '△', special: '×', specDisabled: true }
+            ];
+            const pattern = symbols[index % symbols.length];
+
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td class="f-info"><strong>${displayName}</strong><br><span class="eq">${flight.model}</span></td>
+                <td class="f-time"><span class="t">${flight.depTime}</span> ➡ <span class="t">${flight.arrTime}</span></td>
+                <td>
+                    <label class="fare-selector">
+                        <input type="radio" name="selected_flight" value="${flight.num}_normal" onclick="selectFlight('${displayName}', ${normalPrice}, '普通運賃', '${flight.depTime}')">
+                        <span class="symbol">${pattern.normal}</span><br><span class="price">¥${normalPrice.toLocaleString()}</span>
+                    </label>
+                </td>
+                <td>
+                    ${pattern.specDisabled ? `
+                        <label class="fare-selector disabled">
+                            <span class="symbol">×</span><br><span class="price">満席</span>
+                        </label>
+                    ` : `
+                        <label class="fare-selector">
+                            <input type="radio" name="selected_flight" value="${flight.num}_special" onclick="selectFlight('${displayName}', ${specialPrice}, '特割7', '${flight.depTime}')">
+                            <span class="symbol">${pattern.special}</span><br><span class="price">¥${specialPrice.toLocaleString()}</span>
+                        </label>
+                    `}
+                </td>
+            `;
+            container.appendChild(tr);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', initBookingPage);
+
+    // 便選択イベント
+    function selectFlight(flightNum, price, fareType, flightTime) {
+        reservationData.flightNum = flightNum;
+        reservationData.flightTime = flightTime;
+        reservationData.price = price;
+        reservationData.fareType = fareType;
+        document.getElementById('btn-to-step2').disabled = false;
+    }
+
+    function validateStep2() {
+        const name = document.getElementById('passenger-name').value.trim();
+        const phone = document.getElementById('passenger-phone').value.trim();
+        const email = document.getElementById('passenger-email').value.trim();
+        document.getElementById('btn-to-step3').disabled = !(name && phone && email);
+    }
+
+    function validateStep4() {
+        const num = document.getElementById('card-num').value.trim();
+        const exp = document.getElementById('card-exp').value.trim();
+        const cvv = document.getElementById('card-cvv').value.trim();
+        document.getElementById('btn-submit-pay').disabled = !(num && exp && cvv);
+    }
+
+    function goToStep(stepNumber) {
+        for(let i=1; i<=5; i++) {
+            document.getElementById('panel-step' + i).style.display = 'none';
+            document.getElementById('step' + i).classList.remove('active');
+        }
+        document.getElementById('panel-step' + stepNumber).style.display = 'block';
+        document.getElementById('step' + stepNumber).classList.add('active');
+        
+        const depName = airportNames[reservationData.depCode] || reservationData.depCode;
+        const arrName = airportNames[reservationData.arrCode] || reservationData.arrCode;
+
+        if (stepNumber === 4) {
+            reservationData.name = document.getElementById('passenger-name').value;
+            reservationData.phone = document.getElementById('passenger-phone').value;
+            reservationData.email = document.getElementById('passenger-email').value;
+            reservationData.seatPref = document.querySelector('input[name="seat_pref"]:checked').value;
+            
+            document.getElementById('summary-route').innerText = `${depName} ➡ ${arrName}`;
+            document.getElementById('summary-flight').innerText = `${reservationData.flightNum} (${reservationData.flightTime}発)`;
+            document.getElementById('summary-fare-type').innerText = reservationData.fareType;
+            document.getElementById('summary-name').innerText = reservationData.name + " 様";
+            document.getElementById('summary-seat').innerText = reservationData.seatPref;
+            document.getElementById('summary-price').innerText = "¥" + reservationData.price.toLocaleString();
+        }
+        window.scrollTo(0,0);
+    }
+
+    function processPayment() {
+        const payBtn = document.getElementById('btn-submit-pay');
+        payBtn.innerText = "通信中・決済処理中...";
+        payBtn.disabled = true;
+
+        setTimeout(() => {
+            const resNum = "KAL" + Math.floor(100000 + Math.random() * 900000);
+            const depName = airportNames[reservationData.depCode] || reservationData.depCode;
+            const arrName = airportNames[reservationData.arrCode] || reservationData.arrCode;
+            
+            document.getElementById('final-res-num').innerText = resNum;
+            document.getElementById('final-name').innerText = reservationData.name;
+            document.getElementById('final-route').innerText = `${depName} ➡ ${arrName}`;
+            document.getElementById('final-flight').innerText = `${reservationData.dateStr}  ${reservationData.flightNum}便 (${reservationData.flightTime}発)`;
+            document.getElementById('final-seat').innerText = reservationData.seatPref;
+            
+            goToStep(5);
+        }, 1500);
+    }
+</script>
+
+<footer>
+    <div class="footer-nav">
+        <ul>
+            <li><a href="company.html">企業情報</a></li>
+            <li><a href="#">採用情報</a></li>
+            <li><a href="#">プレスリリース</a></li>
+            <li><a href="#">安全報告書</a></li>
+            <li><a href="#">プライバシーポリシー</a></li>
+            <li><a href="#">運送約款</a></li>
+        </ul>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Kagoshima Air Link Co., Ltd. All Rights Reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>

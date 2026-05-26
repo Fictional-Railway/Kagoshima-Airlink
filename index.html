@@ -24,7 +24,7 @@
     <nav class="main-nav">
         <ul>
             <li><a href="index.html" class="active">ホーム</a></li>
-            <li><a href="booking.html">予約・空席照会</a></li>
+            <li><a href="bookinginfo.html">予約・空席照会</a></li>
             <li><a href="route.html">時刻表・路線</a></li>
             <li><a href="service.html">機内サービス</a></li>
             <li><a href="fleet.html">機材紹介</a></li>
@@ -43,53 +43,53 @@
 
     <section class="booking-box">
         <h3>航空券予約・空席照会</h3>
-        <form>
+        <form action="booking.html" method="GET">
             <div class="form-group">
                 <label>出発地</label>
-                <select>
-                    <option>鹿児島 (KOJ)</option>
-                    <option>広島西 (HIJ)</option>
-                    <option>高知 (KCZ)</option>
-                    <option>北九州 (KKJ)</option>
-                    <option>静岡 (FSZ)</option>
-                    <option>屋久島 (KUM)</option>
-                    <option>高松 (TAK)</option>
-                    <option>与論 (RNJ)</option>
+                <select id="search-dep" name="dep">
+                    <option value="KOJ">鹿児島 (KOJ)</option>
+                    <option value="HIJ">広島西 (HIJ)</option>
+                    <option value="KCZ">高知 (KCZ)</option>
+                    <option value="KKJ">北九州 (KKJ)</option>
+                    <option value="FSZ">静岡 (FSZ)</option>
+                    <option value="KUM">屋久島 (KUM)</option>
+                    <option value="TAK">高松 (TAK)</option>
+                    <option value="RNJ">与論 (RNJ)</option>
                 </select>
             </div>
             <div class="form-group">
                 <label>到着地</label>
-                <select>
-                    <option>鹿児島 (KOJ)</option>
-                    <option selected>広島西 (HIJ)</option>
-                    <option>高知 (KCZ)</option>
-                    <option>北九州 (KKJ)</option>
-                    <option>静岡 (FSZ)</option>
-                    <option>屋久島 (KUM)</option>
-                    <option>高松 (TAK)</option>
-                    <option>与論 (RNJ)</option>
+                <select id="search-arr" name="arr">
+                    <option value="KOJ">鹿児島 (KOJ)</option>
+                    <option value="HIJ" selected>広島西 (HIJ)</option>
+                    <option value="KCZ">高知 (KCZ)</option>
+                    <option value="KKJ">北九州 (KKJ)</option>
+                    <option value="FSZ">静岡 (FSZ)</option>
+                    <option value="KUM">屋久島 (KUM)</option>
+                    <option value="TAK">高松 (TAK)</option>
+                    <option value="RNJ">与論 (RNJ)</option>
                 </select>
             </div>
             <div class="form-group">
                 <label for="boardingDate">搭乗日</label>
-                <input type="date" id="boardingDate" name="boardingDate">
+                <input type="date" id="boardingDate" name="date">
             </div>
 
             <script>
                 // 今日の日付を YYYY-MM-DD 形式で取得
                 function getTodayString() {
-                const today = new Date();
-                const year = today.getFullYear();
-                const month = String(today.getMonth() + 1).padStart(2, '0');
-                const day = String(today.getDate()).padStart(2, '0');
-                return `${year}-${month}-${day}`;
-            }
+                    const today = new Date();
+                    const year = today.getFullYear();
+                    const month = String(today.getMonth() + 1).padStart(2, '0');
+                    const day = String(today.getDate()).padStart(2, '0');
+                    return `${year}-${month}-${day}`;
+                }
 
                 // ページ読み込み時に搭乗日に今日の日付をセット
                 document.addEventListener('DOMContentLoaded', () => {
-                const dateInput = document.getElementById('boardingDate');
-                dateInput.value = getTodayString();
-            });
+                    const dateInput = document.getElementById('boardingDate');
+                    dateInput.value = getTodayString();
+                });
             </script>
 
             <button type="submit" class="btn-search">空席を照会する</button>
