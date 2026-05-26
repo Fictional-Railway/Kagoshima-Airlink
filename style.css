@@ -1180,8 +1180,8 @@ footer {
 ========================================= */
 
 /* ダミー画像のアイコン表現変更（絵文字で代用） */
-.campaign-icon-route::before { content: "✈️"; font-size: 36px; display: block; text-align: center; line-height: 100px; }
-.campaign-icon-service::before { content: "🍵"; font-size: 36px; display: block; text-align: center; line-height: 100px; }
+.campaign-icon-route::before {  font-size: 36px; display: block; text-align: center; line-height: 100px; }
+.campaign-icon-service::before {  font-size: 36px; display: block; text-align: center; line-height: 100px; }
 
 /* キャンペーン運賃表のスタイリング */
 .campaign-table-container {
@@ -1347,6 +1347,7 @@ footer {
 .badge-route { background-color: #0056b3; }    /* 運航：青 */
 .badge-campaign { background-color: #e68a00; } /* イベント：オレンジ */
 .badge-corp { background-color: #555555; }     /* 企業：グレー */
+.badge-important { background-color: #cc0000; } /* 重要：赤 */
 
 /* 記事タイトルと概要 */
 .press-content {
