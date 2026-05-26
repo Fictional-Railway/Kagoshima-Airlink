@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鹿児島エアリンク | Kagoshima Air Link (KAL) - 薩摩の空を、もっと身近に。</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="header-top">
+        <div class="logo">
+            <h1>鹿児島エアリンク</h1>
+            <p>Kagoshima Air Link</p>
+        </div>
+        <div class="header-utility">
+            <ul>
+                <li><a href="#">よくあるご質問</a></li>
+                <li><a href="#">お問い合わせ</a></li>
+            </ul>
+        </div>
+    </div>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html">ホーム</a></li>
+            <li><a href="booking.html">予約・空席照会</a></li>
+            <li><a href="route.html">時刻表・路線</a></li>
+            <li><a href="service.html">機内サービス</a></li>
+            <li><a href="fleet.html" class="active">機材紹介</a></li>
+            <li><a href="company.html">企業情報</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div class="content-wrapper" style="flex-direction: column; padding: 20px 30px 40px;">
+        <section class="service-page">
+            <h2 class="page-title">早割28 絶賛発売中！ / Early Bird Discount 28</h2>
+            
+            <p class="service-intro">薩摩の空を、もっと身近に、もっと気軽に。ビジネスも帰省もご旅行も、28日前までの早めの計画とご予約で、フライトが圧倒的にお得になる「早割28」をぜひご利用ください。</p>
+            
+            <div class="service-block">
+                <h3>「早割28」が選ばれる理由</h3>
+                <div class="service-grid">
+                    <div class="service-item">
+                        <div class="service-img-dummy campaign-icon-route"></div>
+                        <div class="service-detail">
+                            <h4>離島も本土も！全路線が対象</h4>
+                            <p>広島西線や静岡線などの本土幹線から、屋久島や与論といった薩摩の美しい離島を結ぶ路線まで、鹿児島エアリンクの全路線でお得な座席をご用意しております。</p>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-img-dummy campaign-icon-service"></div>
+                        <div class="service-detail">
+                            <h4>充実の機内サービスはそのまま</h4>
+                            <p>運賃はお手頃になってもサービスの手を抜くことはありません。名産「知覧茶」の無料提供や丁寧な機内おもてなし、無料の手荷物お預かりも通常通りご利用いただけます。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-block">
+                <h3>「早割28」設定運賃一例（片道）</h3>
+                <div class="campaign-table-container">
+                    <p class="campaign-table-note">※運賃額は2026年5月現在のものです。座席数には便ごとに限りがあります。</p>
+                    <table class="campaign-fare-table">
+                        <thead>
+                            <tr>
+                                <th>対象路線</th>
+                                <th>通常普通運賃</th>
+                                <th class="discount-header">早割28（最安値）</th>
+                                <th>オンライン予約</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>鹿児島 ➡ 広島西</strong></td>
+                                <td class="fare-old">¥18,500</td>
+                                <td class="fare-new">¥8,800～</td>
+                                <td><button class="btn-campaign-book" onclick="bookCampaign('KOJ', 'HIJ')">空席照会 ➡</button></td>
+                            </tr>
+                            <tr>
+                                <td><strong>鹿児島 ➡ 屋久島</strong></td>
+                                <td class="fare-old">¥18,500</td>
+                                <td class="fare-new">¥7,900～</td>
+                                <td><button class="btn-campaign-book" onclick="bookCampaign('KOJ', 'KUM')">空席照会 ➡</button></td>
+                            </tr>
+                            <tr>
+                                <td><strong>鹿児島 ➡ 静岡</strong></td>
+                                <td class="fare-old">¥18,500</td>
+                                <td class="fare-new">¥11,000～</td>
+                                <td><button class="btn-campaign-book" onclick="bookCampaign('KOJ', 'FSZ')">空席照会 ➡</button></td>
+                            </tr>
+                            <tr>
+                                <td><strong>鹿児島 ➡ 与論</strong></td>
+                                <td class="fare-old">¥14,800</td>
+                                <td class="fare-new">¥6,500～</td>
+                                <td><button class="btn-campaign-book" onclick="bookCampaign('KOJ', 'RNJ')">空席照会 ➡</button></td>
+                            </tr>
+                            <tr>
+                                <td><strong>鹿児島 ➡ 高知</strong></td>
+                                <td class="fare-old">¥14,800</td>
+                                <td class="fare-new">¥6,800～</td>
+                                <td><button class="btn-campaign-book" onclick="bookCampaign('KOJ', 'KCZ')">空席照会 ➡</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="service-block">
+                <h3>運賃のご案内とご注意事項</h3>
+                <div class="magazine-container">
+                    <div class="magazine-info" style="width: 100%;">
+                        <ul class="campaign-notice-list">
+                            <li>ご搭乗日の28日前までに予約および航空券のご購入が必要となります。</li>
+                            <li>航空券ご購入後の予約変更は承れません。（同区間内の他便への変更も不可）</li>
+                            <li>販売座席数は便ごとに制限がございます。設定期間内であっても満席になり次第販売を終了いたします。</li>
+                            <li>ご購入後の払い戻し時には、弊社規定の取消手数料および払戻手数料を申し受けます。</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<script>
+    // 28日前ルールの整合性を保つため、自動的に「30日後」の日付で検索パラメータを作って予約へジャンプ
+    function bookCampaign(dep, arr) {
+        const d = new Date();
+        d.setDate(d.getDate() + 30);
+        
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        const dateString = `${year}-${month}-${day}`;
+
+        window.location.href = `booking.html?dep=${dep}&arr=${arr}&date=${dateString}`;
+    }
+</script>
+
+<footer>
+    <div class="footer-nav">
+        <ul>
+            <li><a href="company.html">企業情報</a></li>
+            <li><a href="careers.html">採用情報</a></li>
+            <li><a href="press.html">プレスリリース</a></li>
+            <li><a href="safety.html">安全報告書</a></li>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+            <li><a href="terms.html">運送約款</a></li>
+        </ul>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Kagoshima Air Link All Rights Reserved.</p>
+        <p>注意：このサイトの内容はすべて架空のものです。また、実際の地名・会社名、人物名等がサイト内に含まれますが、それらとは一切関係ありません。</p>
+    </div>
+</footer>
+
+</body>
+</html>

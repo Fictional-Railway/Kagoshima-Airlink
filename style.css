@@ -1174,3 +1174,87 @@ footer {
         width: 100%;
     }
 }
+
+/* =========================================
+   早割28 キャンペーンページ用 追加CSS
+========================================= */
+
+/* ダミー画像のアイコン表現変更（絵文字で代用） */
+.campaign-icon-route::before { content: "✈️"; font-size: 36px; display: block; text-align: center; line-height: 100px; }
+.campaign-icon-service::before { content: "🍵"; font-size: 36px; display: block; text-align: center; line-height: 100px; }
+
+/* キャンペーン運賃表のスタイリング */
+.campaign-table-container {
+    margin-top: 15px;
+    width: 100%;
+}
+.campaign-table-note {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 8px;
+}
+.campaign-fare-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+.campaign-fare-table th, 
+.campaign-fare-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    font-size: 14px;
+}
+.campaign-fare-table th {
+    background-color: #f2f5f8;
+    color: #333;
+    font-weight: bold;
+}
+.campaign-fare-table th.discount-header {
+    background-color: #ffeccf;
+    color: #cc5200;
+}
+.campaign-fare-table td:first-child {
+    text-align: left;
+}
+.fare-old {
+    color: #999;
+    text-decoration: line-through;
+}
+.fare-new {
+    color: #cc0000;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* 空席照会アクションボタン */
+.btn-campaign-book {
+    background: linear-gradient(to bottom, #ff9900 0%, #e68a00 100%);
+    color: #fff;
+    border: 1px solid #cc7a00;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    transition: background 0.2s;
+}
+.btn-campaign-book:hover {
+    background: linear-gradient(to bottom, #ffaa22 0%, #ff9900 100%);
+}
+
+/* 注意事項リストの調整 */
+.campaign-notice-list {
+    margin: 0;
+    padding-left: 20px;
+}
+.campaign-notice-list li {
+    font-size: 13px;
+    color: #444;
+    line-height: 1.8;
+    margin-bottom: 6px;
+}
+.campaign-notice-list li:last-child {
+    margin-bottom: 0;
+}
