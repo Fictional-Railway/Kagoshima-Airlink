@@ -1389,3 +1389,121 @@ footer {
         font-size: 14px;
     }
 }
+
+/* =========================================
+   トップページ（index.html）お知らせ用 微調整
+========================================= */
+.news ul li {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    line-height: 1.8;
+    margin-bottom: 8px;
+}
+
+.news .date {
+    margin-right: 10px;
+    min-width: 85px;
+}
+
+/* スマホで文字が詰まったときの対策 */
+@media (max-width: 600px) {
+    .news ul li {
+        align-items: flex-start;
+    }
+}
+/* =========================================
+   よくあるご質問（FAQ）専用 追加CSS
+========================================= */
+
+.faq-container {
+    margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* 質問ボタンのスタイル */
+.faq-question {
+    width: 100%;
+    text-align: left;
+    background-color: #f4f8fc;
+    border: 1px solid #b3d4f5;
+    padding: 15px 50px 15px 40px; /* 左側にQの余白、右側に矢印の余白 */
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    border-radius: 4px;
+    position: relative;
+    transition: background-color 0.2s;
+}
+
+.faq-question:hover {
+    background-color: #e6f2ff;
+}
+
+/* 「Q」の文字を先頭に絶対配置 */
+.faq-question::before {
+    content: "Q.";
+    position: absolute;
+    left: 15px;
+    color: #0056b3;
+    font-size: 16px;
+}
+
+/* 右側の「＋」アイコン */
+.faq-question::after {
+    content: "+";
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #0056b3;
+    transition: transform 0.2s;
+}
+
+/* 開いたときの「−」アイコンへの変化 */
+.faq-question.is-active::after {
+    content: "−";
+    color: #cc0000;
+}
+
+/* 回答エリアの初期状態（非表示） */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-top: none;
+    border-radius: 0 0 4px 4px;
+    padding: 0 20px;
+}
+
+/* スクリプトで開いたときのスタイル */
+.faq-answer.is-open {
+    max-height: 200px; /* 十分な高さを確保 */
+    padding: 15px 20px 15px 40px;
+    border-color: #ddd;
+    border-top: none;
+    background-color: #fafafa;
+}
+
+/* 回答の先頭に「A」を配置 */
+.faq-answer p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+    color: #444;
+    position: relative;
+}
+.faq-answer p::before {
+    content: "A.";
+    position: absolute;
+    left: -25px;
+    color: #cc0000;
+    font-weight: bold;
+    font-size: 15px;
+}

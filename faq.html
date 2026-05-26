@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>鹿児島エアリンク | Kagoshima Air Link (KAL) - 薩摩の空を、もっと身近に。</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="header-top">
+        <div class="logo">
+            <h1>鹿児島エアリンク</h1>
+            <p>Kagoshima Air Link</p>
+        </div>
+        <div class="header-utility">
+            <ul>
+                <li><a href="#">よくあるご質問</a></li>
+                <li><a href="#">お問い合わせ</a></li>
+            </ul>
+        </div>
+    </div>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html">ホーム</a></li>
+            <li><a href="booking.html">予約・空席照会</a></li>
+            <li><a href="route.html">時刻表・路線</a></li>
+            <li><a href="service.html">機内サービス</a></li>
+            <li><a href="fleet.html" class="active">機材紹介</a></li>
+            <li><a href="company.html">企業情報</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div class="content-wrapper" style="flex-direction: column; padding: 20px 30px 40px;">
+        <section class="service-page">
+            <h2 class="page-title">よくあるご質問 / FAQ</h2>
+            
+            <p class="service-intro">鹿児島エアリンクのご利用にあたって、お客様から多く寄せられるご質問とその回答をまとめました。解決しない場合は、お気軽にお問い合わせ窓口までご連絡ください。</p>
+            
+            <div class="service-block">
+                <h3>ご予約・お支払いについて</h3>
+                <div class="faq-container">
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">「早割28」はいつまで予約変更が可能ですか？</button>
+                        <div class="faq-answer">
+                            <p>「早割28」などの割引運賃は、ご購入後の予約変更ができません。同一区間であっても他の便への変更は不可となりますので、一度払い戻し（手数料が発生します）の上、新たにご希望の便をご予約いただく必要があります。</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">予約の支払期限はいつまでですか？</button>
+                        <div class="faq-answer">
+                            <p>ご予約日を含めて3日以内にお支払いをお願いいたします。ただし、ご搭乗日が迫っている場合は期限が短くなることがあります。期限内にお支払いが確認できない場合、予約は自動的に取り消されます。</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="service-block">
+                <h3>手荷物・お座席について</h3>
+                <div class="faq-container">
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">預ける手荷物の料金はかかりますか？</button>
+                        <div class="faq-answer">
+                            <p>お一人様20kgまで無料でお預かりいたします。個数に制限はありませんが、総重量が20kgを超えますと、超過手荷物料金が発生いたしますのでご注意ください。</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">機内に持ち込める手荷物のサイズを教えてください。</button>
+                        <div class="faq-answer">
+                            <p>身の回り品（ハンドバッグやカメラなど）のほかに、3辺の合計が100cm以内（45cm×35cm×20cm以内）、総重量10kg以内の手荷物を1個まで持ち込むことができます。</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="service-block">
+                <h3>機内サービスについて</h3>
+                <div class="faq-container">
+                    
+                    <div class="faq-item">
+                        <button class="faq-question">無料のドリンクサービスはありますか？</button>
+                        <div class="faq-answer">
+                            <p>はい、全路線・全便において鹿児島特産の「知覧茶（温・冷）」を無料でお配りしております。その他のお飲み物や「黒豚カツサンド」などの軽食は、機内販売にて数量限定でご用意しております。</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+    </div>
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const questions = document.querySelectorAll('.faq-question');
+        
+        questions.forEach(question => {
+            question.addEventListener('click', () => {
+                // クリックされた質問の次の要素（回答）を取得
+                const answer = question.nextElementSibling;
+                
+                // activeクラスの付け外し
+                question.classList.toggle('is-active');
+                answer.classList.toggle('is-open');
+            });
+        });
+    });
+</script>
+
+
+<script>
+    // 28日前ルールの整合性を保つため、自動的に「30日後」の日付で検索パラメータを作って予約へジャンプ
+    function bookCampaign(dep, arr) {
+        const d = new Date();
+        d.setDate(d.getDate() + 30);
+        
+        const year = d.getFullYear();
+        const month = String(d.getMonth() + 1).padStart(2, '0');
+        const day = String(d.getDate()).padStart(2, '0');
+        const dateString = `${year}-${month}-${day}`;
+
+        window.location.href = `booking.html?dep=${dep}&arr=${arr}&date=${dateString}`;
+    }
+</script>
+
+<footer>
+    <div class="footer-nav">
+        <ul>
+            <li><a href="company.html">企業情報</a></li>
+            <li><a href="careers.html">採用情報</a></li>
+            <li><a href="press.html">プレスリリース</a></li>
+            <li><a href="safety.html">安全報告書</a></li>
+            <li><a href="privacy.html">プライバシーポリシー</a></li>
+            <li><a href="terms.html">運送約款</a></li>
+        </ul>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 Kagoshima Air Link All Rights Reserved.</p>
+        <p>注意：このサイトの内容はすべて架空のものです。また、実際の地名・会社名、人物名等がサイト内に含まれますが、それらとは一切関係ありません。</p>
+    </div>
+</footer>
+
+</body>
+</html>
